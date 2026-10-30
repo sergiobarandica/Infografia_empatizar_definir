@@ -74,29 +74,50 @@
   Array.prototype.forEach.call(pt.children,function(b,i){b.addEventListener("click",function(){showP(i)})});
   showP(0);
 
-  // Journey
-  var J=[
-    {n:"Llega y oye el tema",e:0,does:"Se sienta con su grupo; la docente anuncia el tema (gobierno escolar).",thinks:"¿Otra vez el personero?",opp:"Abrir con una situación de su barrio o su colegio."},
-    {n:"Explicación en el tablero",e:-1,does:"Escucha una explicación larga de conceptos.",thinks:"Esto me lo tengo que aprender.",opp:"Cambiar la definición por una pregunta sin respuesta única."},
-    {n:"Copia en el cuaderno",e:-2,does:"Copia definiciones del tablero.",thinks:"¿Para qué me sirve esto?",opp:"Registrar decisiones en lugar de copiar definiciones."},
-    {n:"Actividad o reto",e:2,does:"Discute un caso con su grupo cuando la docente lo propone.",thinks:"Yo haría otra cosa, porque…",opp:"Mostrar varias perspectivas antes de decidir."},
-    {n:"Cierre y evaluación",e:-1,does:"Responde preguntas de selección sobre los conceptos.",thinks:"Ojalá haya acertado.",opp:"Retroalimentar las razones, no solo los aciertos."},
-    {n:"Después, en casa",e:-1,does:"Hace la tarea en el cuaderno; no tiene computador.",thinks:"No puedo buscar más.",opp:"Que la práctica ocurra en el aula, sin depender de la casa."}
+  // Journey maps de las tres proto-personas
+  var JM=[
+    {tab:"Mariana · 5.º",scen:"Una clase de formación ciudadana sobre el gobierno escolar.",sel:2,J:[
+      {n:"Llega y oye el tema",e:0,does:"Se sienta con su grupo; la docente anuncia el tema (gobierno escolar).",thinks:"¿Otra vez el personero?",opp:"Abrir con una situación de su barrio o su colegio."},
+      {n:"Explicación en el tablero",e:-1,does:"Escucha una explicación larga de conceptos.",thinks:"Esto me lo tengo que aprender.",opp:"Cambiar la definición por una pregunta sin respuesta única."},
+      {n:"Copia en el cuaderno",e:-2,does:"Copia definiciones del tablero.",thinks:"¿Para qué me sirve esto?",opp:"Registrar decisiones en lugar de copiar definiciones."},
+      {n:"Actividad o reto",e:2,does:"Discute un caso con su grupo cuando la docente lo propone.",thinks:"Yo haría otra cosa, porque…",opp:"Mostrar varias perspectivas antes de decidir."},
+      {n:"Cierre y evaluación",e:-1,does:"Responde preguntas de selección sobre los conceptos.",thinks:"Ojalá haya acertado.",opp:"Retroalimentar las razones, no solo los aciertos."},
+      {n:"Después, en casa",e:-1,does:"Hace la tarea en el cuaderno; no tiene computador.",thinks:"No puedo buscar más.",opp:"Que la práctica ocurra en el aula, sin depender de la casa."}]},
+    {tab:"Julián · 4.º",scen:"La misma clase, vista por un estudiante que lee despacio y prefiere no hablar ante el grupo.",sel:3,J:[
+      {n:"Llega y oye el tema",e:0,does:"Se sienta al fondo, cerca de su compañero de siempre.",thinks:"Ojalá no me pregunten a mí.",opp:"Empezar con una historia narrada en voz alta."},
+      {n:"Lectura del texto guía",e:-1,does:"Sigue la lectura en voz alta y se pierde en los párrafos largos.",thinks:"Los demás leen más rápido que yo.",opp:"Narración en audio y texto en partes cortas."},
+      {n:"Copia en el cuaderno",e:-2,does:"No alcanza a copiar antes de que borren el tablero.",thinks:"Me quedé atrás otra vez.",opp:"Que cada uno avance a su ritmo."},
+      {n:"Trabajo en pareja",e:2,does:"Resuelve el caso con su compañero y propone una idea.",thinks:"Así sí me atrevo.",opp:"Decidir en pareja con un solo equipo."},
+      {n:"Socialización ante el grupo",e:-2,does:"Su pareja habla por los dos; él mira al piso.",thinks:"Prefiero que hable otro.",opp:"Que su razón quede registrada sin tener que exponer."},
+      {n:"Después, en casa",e:-1,does:"Termina la tarea sin internet ni computador.",thinks:"No tengo dónde buscar.",opp:"Que la práctica ocurra en el aula, sin depender de la casa."}]},
+    {tab:"Claudia · docente",scen:"La preparación y el desarrollo de una clase con un recurso digital.",sel:2,J:[
+      {n:"Planea",e:0,does:"Busca un recurso que encaje con el tema del plan de área.",thinks:"¿Me alcanza el tiempo?",opp:"Recurso alineado con las competencias que evalúa el Icfes."},
+      {n:"Prepara equipos",e:-1,does:"Reserva la sala o las tabletas y revisa que carguen.",thinks:"¿Habrá equipos para todos?",opp:"Instalación previa, una vez por equipo."},
+      {n:"Inicia la clase",e:-2,does:"Intenta abrir el recurso con la conexión del aula.",thinks:"¿Y si se cae el internet?",opp:"Funcionamiento sin conexión."},
+      {n:"Desarrolla la actividad",e:0,does:"Acompaña a unos 38 estudiantes, varios por equipo.",thinks:"No alcanzo a escuchar a todos los grupos.",opp:"Trabajo en parejas con un solo equipo; la docente como guía."},
+      {n:"Evalúa",e:-1,does:"Revisa las respuestas de los estudiantes.",thinks:"Sé quién acertó, pero no por qué.",opp:"Registro de decisiones y razones que la docente pueda revisar."}]}
   ];
-  var mid=80,step=28,xs=J.map(function(_,i){return 53+i*106.8});function y(e){return mid-e*step}
-  var g='<line x1="10" x2="630" y1="'+mid+'" y2="'+mid+'" stroke="#bdb3cf" stroke-dasharray="5 5"/>'+
-    '<text x="12" y="'+(y(2)+5)+'" fill="#5f5670" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="14">+</text>'+
-    '<text x="12" y="'+(y(-2)+5)+'" fill="#5f5670" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="14">−</text>'+
-    '<path d="M'+xs.map(function(x,i){return x+" "+y(J[i].e)}).join(" L")+'" fill="none" stroke="#2a2340" stroke-width="3.5" stroke-linejoin="round"/>';
-  xs.forEach(function(x,i){g+='<circle cx="'+x+'" cy="'+y(J[i].e)+'" r="9" fill="'+(J[i].e<0?'#e5485c':(J[i].e>0?'#0f7c72':'#ef8f2a'))+'" stroke="#fffaf0" stroke-width="3" data-i="'+i+'" style="cursor:pointer"/>'});
-  $("jsvg").innerHTML=g;
-  var jph=$("jph"),jd=$("jdetail");
-  jph.innerHTML=J.map(function(p,i){return '<button class="jbtn" aria-pressed="'+(i===2)+'">'+p.n+'</button>'}).join("");
+  var jt=$("jtabs"),jph=$("jph"),jd=$("jdetail"),J=JM[0].J;
+  jt.innerHTML=JM.map(function(m,i){return '<button class="pill" role="tab" aria-selected="'+(i===0)+'">'+m.tab+'</button>'}).join("");
+  function drawJ(k){var m=JM[k];J=m.J;var n=J.length;
+    Array.prototype.forEach.call(jt.children,function(b,j){b.setAttribute("aria-selected",j===k)});
+    $("jscen").innerHTML='<b>Escenario.</b> '+m.scen;
+    var mid=80,step=28,w=640/n,xs=J.map(function(_,i){return w/2+i*w});function y(e){return mid-e*step}
+    var g='<line x1="10" x2="630" y1="'+mid+'" y2="'+mid+'" stroke="#bdb3cf" stroke-dasharray="5 5"/>'+
+      '<text x="12" y="'+(y(2)+5)+'" fill="#5f5670" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="14">+</text>'+
+      '<text x="12" y="'+(y(-2)+5)+'" fill="#5f5670" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="14">−</text>'+
+      '<path d="M'+xs.map(function(x,i){return x+" "+y(J[i].e)}).join(" L")+'" fill="none" stroke="#2a2340" stroke-width="3.5" stroke-linejoin="round"/>';
+    xs.forEach(function(x,i){g+='<circle cx="'+x+'" cy="'+y(J[i].e)+'" r="9" fill="'+(J[i].e<0?'#e5485c':(J[i].e>0?'#0f7c72':'#ef8f2a'))+'" stroke="#fffaf0" stroke-width="3" data-i="'+i+'" style="cursor:pointer"/>'});
+    $("jsvg").innerHTML=g;$("jsvg").setAttribute("aria-label","Curva de emoción a lo largo de "+n+" etapas");
+    jph.style.setProperty("--n",n);
+    jph.innerHTML=J.map(function(p){return '<button class="jbtn" aria-pressed="false">'+p.n+'</button>'}).join("");
+    Array.prototype.forEach.call(jph.children,function(b,i){b.addEventListener("click",function(){showJ(i)})});
+    showJ(m.sel);}
   function showJ(i){Array.prototype.forEach.call(jph.children,function(b,j){b.setAttribute("aria-pressed",j===i)});var p=J[i];
     jd.innerHTML='<div><h5>Hace</h5>'+p.does+'</div><div><h5>Piensa</h5>'+p.thinks+'</div><div><h5>Oportunidad</h5>'+p.opp+'</div>'}
-  Array.prototype.forEach.call(jph.children,function(b,i){b.addEventListener("click",function(){showJ(i)})});
+  Array.prototype.forEach.call(jt.children,function(b,i){b.addEventListener("click",function(){drawJ(i)})});
   $("jsvg").addEventListener("click",function(ev){var i=ev.target.getAttribute&&ev.target.getAttribute("data-i");if(i!==null&&i!==undefined)showJ(+i)});
-  showJ(2);
+  drawJ(0);
 
   // Insights
   var I=[

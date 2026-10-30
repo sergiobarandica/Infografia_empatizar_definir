@@ -203,7 +203,9 @@ a{color:inherit}
 /* Journey */
 .jwrap{background:var(--paper);border-radius:16px;padding:14px;overflow-x:auto}
 .jsvg{width:100%;min-width:640px;height:auto;display:block}
-.jph{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;min-width:640px}
+.jph{display:grid;grid-template-columns:repeat(var(--n,6),1fr);gap:6px;min-width:640px}
+.jscen{font-size:.95rem;color:var(--muted);max-width:80ch}
+.jscen b{color:var(--ink);font-family:var(--display);letter-spacing:.04em}
 .jbtn{border:0;background:var(--cream);color:var(--ink);padding:8px 4px;border-radius:10px;font-family:var(--display);font-weight:700;font-size:.9rem;line-height:1.1;letter-spacing:.02em}
 .jbtn[aria-pressed="true"]{background:var(--emp);color:#fff}
 .jdetail{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
