@@ -66,7 +66,8 @@
   var pt=$("ptabs"),pv=$("pview");
   pt.innerHTML=P.map(function(p,i){return '<button class="pill" role="tab" aria-selected="'+(i===0)+'">'+p.tab+'</button>'}).join("");
   function li(a){return "<ul>"+a.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ul>"}
-  function q(t,a,c){return '<div class="quad'+(c?' '+c:'')+'"><h5>'+t+'</h5>'+li(a)+'</div>'}
+  var QI={"Dice":"i-say","Piensa":"i-think","Hace":"i-hand","Siente":"i-heart","Dolores":"i-bolt","Ganancias":"i-spark"};
+  function q(t,a,c){return '<div class="quad'+(c?' '+c:'')+'"><h5><span class="qic" aria-hidden="true"><svg class="ic"><use href="#'+QI[t]+'"/></svg></span>'+t+'</h5>'+li(a)+'</div>'}
   function showP(i){var p=P[i];Array.prototype.forEach.call(pt.children,function(b,j){b.setAttribute("aria-selected",j===i)});
     pv.innerHTML='<div class="pcard"><img class="pp-pic" src="'+p.pic+'" alt="Ilustración de '+p.name.split(',')[0]+'"><span class="role">Proto-persona · nombre ficticio</span><h5>'+p.name+'</h5><span class="role">'+p.role+'</span>'+li(p.facts)+'</div>'+
     '<div class="emap">'+q("Dice",p.dice)+q("Piensa",p.piensa)+q("Hace",p.hace)+q("Siente",p.siente)+q("Dolores",[p.pain],"pain")+q("Ganancias",[p.gain],"gain")+'</div>'}

@@ -190,6 +190,11 @@ a{color:inherit}
 .quad{background:var(--paper);border-radius:14px;padding:12px 14px;display:grid;gap:8px;align-content:start;min-width:0}
 .quad h5{font-family:var(--display);font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ccd);display:flex;align-items:center;gap:8px}
 .quad h5::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--cc)}
+.quad h5::before{display:none}
+.qic{width:30px;height:30px;border-radius:50%;background:var(--cc);color:#fff;display:grid;place-items:center;flex:none}
+.qic .ic{width:17px;height:17px;stroke-width:2.2}
+.quad.pain .qic{background:var(--magenta)}
+.quad.gain .qic{background:var(--teal)}
 .quad.pain{background:var(--magenta-s)}
 .quad.gain{background:var(--teal-s)}
 .quad.pain h5{color:var(--magenta)}.quad.pain h5::before{background:var(--magenta)}
